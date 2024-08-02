@@ -30,7 +30,7 @@ function getComputerChoice() {
     console.log("Random: " + randNumber);
     console.log("Hand: " + hand);
     // will need to return the value here
-    return
+    return hand
 }
 
 // getComputerChoice();
@@ -91,7 +91,7 @@ function playRound(humanChoice, computerChoice) {
         if (computerChoice === 'rock') {
             console.log('Human wins! Paper beats rock');            
             return humanScore++;
-        } else if (computerChoice == 'scissors') {
+        } else if (computerChoice === 'scissors') {
             console.log('Computer wins! Scissors beats paper');
             return computerScore++;
         } else {
@@ -104,7 +104,7 @@ function playRound(humanChoice, computerChoice) {
         if (computerChoice === 'scissors') {
                 console.log('Human wins! Rock beats scissors');            
             return humanScore++;
-        } else if (computerChoice == 'paper') {
+        } else if (computerChoice === 'paper') {
             console.log('Computer wins! Paper beats rock');
             return computerScore++;
         } else {
@@ -117,7 +117,7 @@ function playRound(humanChoice, computerChoice) {
         if (computerChoice === 'paper') {
             console.log('Human wins! Scissors beats paper');            
             return humanScore++;
-        } else if (computerChoice == 'rock') {
+        } else if (computerChoice === 'rock') {
             console.log('Computer wins! Rock beats Scissors');
             return computerScore++;
         } else {
@@ -133,7 +133,9 @@ const computerSelection = getComputerChoice();
 
 playRound(humanSelection, computerSelection);
 
-/* NEXT STEPS: WRITE STEP 6, SEE INSTRUCTIONS */
+/* NEXT STEPS: WRITE STEP 6, SEE INSTRUCTIONS
+also test above function logic with console log, make sure all working correctly
+*/
 
 
 
