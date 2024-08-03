@@ -27,8 +27,8 @@ function getComputerChoice() {
         hand = 'scissors';
     }
 
-    console.log("Random: " + randNumber);
-    console.log("Hand: " + hand);
+    // console.log("Random: " + randNumber);
+    // console.log("Hand: " + hand);
     // will need to return the value here
     return hand
 }
@@ -51,7 +51,7 @@ function getHumanChoice() {
         } else {
             hand = 'scissors';
         }
-        console.log("human choice: " + hand);
+        // console.log("human choice: " + hand);
         return hand
     } else {
         console.log("incorrect hand, running again");   
@@ -66,8 +66,7 @@ function getHumanChoice() {
 declare two variables, humanScore and computerScore, init with 0
 */
 
-let humanScore = 0;
-let computerScore = 0;
+
 
 /* PSEUDOCODE FOR LOGIC FOR A FUNCTION TO PLAY A SINGLE ROUND 
 Description: take human and computer player choices as arguments, play a single round, increment the round winner's score and logs a winner announcement
@@ -87,52 +86,63 @@ parity means tie round
 
 */
 
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice, computerChoice, humanScore, computerScore) {
+    let winner;
     if (humanChoice === 'paper') {
         if (computerChoice === 'rock') {
             console.log('Human wins! Paper beats rock');            
-            return humanScore++;
+            // humanScore++;
+            winner = 'human';
+            return winner;
+            
         } else if (computerChoice === 'scissors') {
             console.log('Computer wins! Scissors beats paper');
-            return computerScore++;
+            winner = 'computer';
         } else {
             console.log('Round tied, paper chosen by both');
-            return
-        }
+            winner = 'tie';
+            }
+        // console.log("from PR: hs: " + humanScore + " cs: " + computerScore);
+        return winner;
     }
 
     if (humanChoice === 'rock') {
         if (computerChoice === 'scissors') {
                 console.log('Human wins! Rock beats scissors');            
-            return humanScore++;
+                winner = 'human';
         } else if (computerChoice === 'paper') {
             console.log('Computer wins! Paper beats rock');
-            return computerScore++;
+            winner = 'computer';
         } else {
             console.log('Round tied, rock chosen by both');
-            return
+            winner = 'tie';
+            
         }
+        // console.log("from PR: hs: " + humanScore + " cs: " + computerScore);
+        return winner;
     }
 
     if (humanChoice === 'scissors') {
         if (computerChoice === 'paper') {
             console.log('Human wins! Scissors beats paper');            
-            return humanScore++;
+            winner = 'human';
         } else if (computerChoice === 'rock') {
             console.log('Computer wins! Rock beats Scissors');
-            return computerScore++;
+            winner = 'computer';
         } else {
             console.log('Round tied, scissors chosen by both');
-            return
+            winner = 'tie';
+            
         }
+        // console.log("from PR: hs: " + humanScore + " cs: " + computerScore);
+        return winner;
     }
 
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
+
+
 
 /* NEXT STEPS: WRITE STEP 6, SEE INSTRUCTIONS
 also test above function logic with console log, make sure all working correctly
@@ -144,6 +154,46 @@ also test above function logic with console log, make sure all working correctly
     * play 5 rounds by calling playRound 5 times - maybe I can have a counter in the function?
 
 */
+
+
+
+function playGame(rounds, humanScore, computerScore) {
+    // let humanScore = humanScore;
+    // let computerScore = computerScore;
+        
+    if (rounds > 0) {
+        const winner = playRound(getHumanChoice(), getComputerChoice());
+        rounds--;
+        if (winner === 'human') {
+            humanScore++;
+        } else if (winner === 'computer') {
+            computerScore++;
+        }
+    } else {
+        console.log('------------');
+        console.log('Game has finished, let\'s see who won');
+        console.log('------------');
+        console.log(`Human score:  ${humanScore}`);
+        console.log(`Computer score: ${computerScore}`);
+        if (humanScore > computerScore) {
+            console.log('Human is the winner!');
+            } else if (humanScore < computerScore) {
+            console.log('Computer is the winner');
+            } else {
+            console.log('Game is a tie, all players equal');
+            }
+    return
+    }    
+   
+
+    // console.log("end of round");
+    // console.log("hs: " + humanScore);
+    // console.log("cs: " + computerScore);
+
+    playGame(rounds, humanScore, computerScore);
+}
+
+playGame(5, 0, 0);
 
 
 
