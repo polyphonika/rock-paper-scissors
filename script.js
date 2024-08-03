@@ -51,10 +51,11 @@ function getHumanChoice() {
         } else {
             hand = 'scissors';
         }
-        console.log(hand);
+        console.log("human choice: " + hand);
         return hand
     } else {
-        getHumanChoice();
+        console.log("incorrect hand, running again");   
+        return getHumanChoice();
     }
 
 }
@@ -135,6 +136,13 @@ playRound(humanSelection, computerSelection);
 
 /* NEXT STEPS: WRITE STEP 6, SEE INSTRUCTIONS
 also test above function logic with console log, make sure all working correctly
+
+1. testing output of each function. first, computerChoice. - OK, NOW WORKING CORRECTLY
+2. follow instructions to write step 6 function
+    * create a function called playGame
+    * move playRound and score variables so they're declared in playGame
+    * play 5 rounds by calling playRound 5 times - maybe I can have a counter in the function?
+
 */
 
 
