@@ -1,0 +1,15 @@
+Remove the logic that plays five rounds
+
+Create three buttons, one for each selection
+Add a div for displaying the results
+
+Initial logic:
+Choose rock, paper, scissors.
+Computer randomly chooses one.
+Winner assigned.
+
+Let's have:
+* headline xx
+* three buttons xx
+* Round winner announcement xx
+* Display running score xx
