@@ -13,3 +13,11 @@ Let's have:
 * three buttons xx
 * Round winner announcement xx
 * Display running score xx
+
+Next:
+* implement test event listeners, think this through
+* need to practice event listeners a lot more and using events
+* go back through the youtube lessons and everything from the dom notes - practice all until second nature
+
+Current status:
+* playRound logic works! Now build out the rest. Ignore styling for now.

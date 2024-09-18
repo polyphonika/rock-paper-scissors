@@ -60,6 +60,8 @@ function getHumanChoice() {
 
 }
 
+
+
 // getHumanChoice();
 
 /* PSEUDOCODE AND DESCRIPTION FOR DECLARING PLAYERS SCORE VARIABLES
@@ -157,12 +159,13 @@ also test above function logic with console log, make sure all working correctly
 
 
 
-function playGame(rounds, humanScore, computerScore) {
+function playGame(rounds, humanScore, computerScore, btnChoice) {
     // let humanScore = humanScore;
     // let computerScore = computerScore;
         
     if (rounds > 0) {
-        const winner = playRound(getHumanChoice(), getComputerChoice());
+        // const winner = playRound(getHumanChoice(), getComputerChoice());
+        const winner = playRound(btnChoice, getComputerChoice());
         rounds--;
         if (winner === 'human') {
             humanScore++;
@@ -193,7 +196,21 @@ function playGame(rounds, humanScore, computerScore) {
     playGame(rounds, humanScore, computerScore);
 }
 
-playGame(5, 0, 0);
+// set up event listeners
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+    button.addEventListener('click', e => {
+        // console.log(e.target.textContent);
+        playRound(e.target.textContent, getComputerChoice());
+
+    });
+});
+
+
+
+
+// playGame(5, 0, 0);
 
 
 
