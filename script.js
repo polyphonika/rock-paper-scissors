@@ -95,7 +95,7 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore) {
             console.log('Human wins! Paper beats rock');            
             // humanScore++;
             winner = 'human';
-            return winner;
+            return {computerChoice, winner}
             
         } else if (computerChoice === 'scissors') {
             console.log('Computer wins! Scissors beats paper');
@@ -105,7 +105,7 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore) {
             winner = 'tie';
             }
         // console.log("from PR: hs: " + humanScore + " cs: " + computerScore);
-        return winner;
+        return {computerChoice, winner}
     }
 
     if (humanChoice === 'rock') {
@@ -121,7 +121,7 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore) {
             
         }
         // console.log("from PR: hs: " + humanScore + " cs: " + computerScore);
-        return winner;
+        return {computerChoice, winner}
     }
 
     if (humanChoice === 'scissors') {
@@ -137,7 +137,7 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore) {
             
         }
         // console.log("from PR: hs: " + humanScore + " cs: " + computerScore);
-        return winner;
+        return {computerChoice, winner}
     }
 
 }
@@ -198,17 +198,55 @@ function playGame(rounds, humanScore, computerScore, btnChoice) {
 
 // set up event listeners
 const buttons = document.querySelectorAll('button');
+let playerHand = document.querySelector('p.player-hand');
+let computerHand = document.querySelector('p.computer-hand');
+let playerScoreDisplay = document.querySelector('p.player-score span');
+let computerScoreDisplay = document.querySelector('p.computer-score span');
+let playerScore = 0;
+let computerScore = 0;
 
 buttons.forEach(button => {
+    // const playerHand = document.querySelector('p.player-hand');
     button.addEventListener('click', e => {
         // console.log(e.target.textContent);
-        playRound(e.target.textContent, getComputerChoice());
+        //play game, get returned values
+        let {computerChoice, winner} = playRound(e.target.textContent, getComputerChoice());
+        
+        if (!playerHand) {
+                        
+            playerHand = document.createElement('p');
+            playerHand.classList.add('player-hand');
+            playerHand.textContent = `Player chose: ${e.target.textContent}`;
+            document.querySelector('.played-hands').appendChild(playerHand);
+
+            computerHand = document.createElement('p');
+            computerHand.classList.add('computer-hand');
+            computerHand.textContent = `Computer chose: ${computerChoice}`;
+            document.querySelector('.played-hands').appendChild(computerHand);
+
+            winningHand = document.createElement('p');
+            winningHand.classList.add('winning-hand');
+            winningHand.textContent = `Winner: ${winner}`;
+            document.querySelector('.played-hands').appendChild(winningHand);
+
+            const playerScoreDisplay = document.querySelector('p.player-score span');
+            const computerScoreDisplay = document.querySelector('p.computer-score span');            
+
+        } else {
+            playerHand.textContent = `Player chose: ${e.target.textContent}`;
+            computerHand.textContent = `Computer chose: ${computerChoice}`;
+            winningHand.textContent = `Winner: ${winner}`;
+            playerScoreDisplay.textContent = ++playerScore;
+            computerScoreDisplay.textContent = ++computerScore;
+        }
+        
+        // playerScore++, computerScore++;
+
+
+
 
     });
 });
-
-
-
 
 // playGame(5, 0, 0);
 

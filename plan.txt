@@ -19,5 +19,26 @@ Next:
 * need to practice event listeners a lot more and using events
 * go back through the youtube lessons and everything from the dom notes - practice all until second nature
 
+From TOP:
+In our UI, the player should be able to play the game by clicking on buttons rather than typing their answer in a prompt.
+For now, remove the logic that plays exactly five rounds.
+Create three buttons, one for each selection. Add an event listener to the buttons that call your playRound function with the correct playerSelection every time a button is clicked. (you can keep the console.logs for this step)
+Add a div for displaying results and change all of your console.logs into DOM methods.
+Display the running score, and announce a winner of the game once one player reaches 5 points.
+
 Current status:
 * playRound logic works! Now build out the rest. Ignore styling for now.
+* So, logic to build:
+* When button pressed, output to DOM and show it. xx
+** Look for p class, if doesn't exist create. then move to update.  xx
+* Then do same for computer choice. xx
+* Then show winner. xx
+* Then update scores.
+* Then work out logic for first to five.
+* Add JS for confetti for fun if you win or something negative if you lose
+
+Future:
+* put all new work into functions
+
+Bugs:
+* Fix logic on scores because first round has a score of 0. all about when you declare the variables and how you add them to the dom, straight forward enough.
