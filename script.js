@@ -20,11 +20,11 @@ function getComputerChoice() {
     let randNumber = Math.floor(Math.random() * 3);
     let hand;
     if (randNumber == 0) {
-        hand = 'rock';
+        hand = 'Rock 🪨';
     } else if (randNumber == 1) {
-        hand = 'paper';
+        hand = 'Paper 📃';
     } else {
-        hand = 'scissors';
+        hand = 'Scissors ✂️';
     }
 
     // console.log("Random: " + randNumber);
@@ -90,16 +90,16 @@ parity means tie round
 
 function playRound(humanChoice, computerChoice, humanScore, computerScore) {
     let winner;
-    if (humanChoice === 'paper') {
-        if (computerChoice === 'rock') {
+    if (humanChoice === 'Paper 📃') {
+        if (computerChoice === 'Rock 🪨') {
             console.log('Human wins! Paper beats rock');            
             // humanScore++;
-            winner = 'human';
+            winner = 'Player';
             return {computerChoice, winner}
             
-        } else if (computerChoice === 'scissors') {
+        } else if (computerChoice === 'Scissors ✂️') {
             console.log('Computer wins! Scissors beats paper');
-            winner = 'computer';
+            winner = 'Computer';
         } else {
             console.log('Round tied, paper chosen by both');
             winner = 'tie';
@@ -108,13 +108,13 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore) {
         return {computerChoice, winner}
     }
 
-    if (humanChoice === 'rock') {
-        if (computerChoice === 'scissors') {
+    if (humanChoice === 'Rock 🪨') {
+        if (computerChoice === 'Scissors ✂️') {
                 console.log('Human wins! Rock beats scissors');            
-                winner = 'human';
-        } else if (computerChoice === 'paper') {
+                winner = 'Player';
+        } else if (computerChoice === 'Paper 📃') {
             console.log('Computer wins! Paper beats rock');
-            winner = 'computer';
+            winner = 'Computer';
         } else {
             console.log('Round tied, rock chosen by both');
             winner = 'tie';
@@ -124,13 +124,13 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore) {
         return {computerChoice, winner}
     }
 
-    if (humanChoice === 'scissors') {
-        if (computerChoice === 'paper') {
+    if (humanChoice === 'Scissors ✂️') {
+        if (computerChoice === 'Paper 📃') {
             console.log('Human wins! Scissors beats paper');            
-            winner = 'human';
-        } else if (computerChoice === 'rock') {
+            winner = 'Player';
+        } else if (computerChoice === 'Rock 🪨') {
             console.log('Computer wins! Rock beats Scissors');
-            winner = 'computer';
+            winner = 'Computer';
         } else {
             console.log('Round tied, scissors chosen by both');
             winner = 'tie';
@@ -198,12 +198,16 @@ function playGame(rounds, humanScore, computerScore, btnChoice) {
 
 // set up event listeners
 const buttons = document.querySelectorAll('button');
+let roundContent = document.querySelector('p.round-count span');
 let playerHand = document.querySelector('p.player-hand');
 let computerHand = document.querySelector('p.computer-hand');
 let playerScoreDisplay = document.querySelector('p.player-score span');
 let computerScoreDisplay = document.querySelector('p.computer-score span');
+let tieScoreDisplay = document.querySelector('p.tie-score span');
 let playerScore = 0;
 let computerScore = 0;
+let tieScore = 0;
+let roundCount = 1;
 
 buttons.forEach(button => {
     // const playerHand = document.querySelector('p.player-hand');
@@ -211,6 +215,7 @@ buttons.forEach(button => {
         // console.log(e.target.textContent);
         //play game, get returned values
         let {computerChoice, winner} = playRound(e.target.textContent, getComputerChoice());
+        roundContent.textContent = roundCount;
         
         if (!playerHand) {
                         
@@ -228,22 +233,25 @@ buttons.forEach(button => {
             winningHand.classList.add('winning-hand');
             winningHand.textContent = `Winner: ${winner}`;
             document.querySelector('.played-hands').appendChild(winningHand);
+        }
 
-            const playerScoreDisplay = document.querySelector('p.player-score span');
-            const computerScoreDisplay = document.querySelector('p.computer-score span');            
-
-        } else {
-            playerHand.textContent = `Player chose: ${e.target.textContent}`;
-            computerHand.textContent = `Computer chose: ${computerChoice}`;
-            winningHand.textContent = `Winner: ${winner}`;
+        playerHand.textContent = `Player chose: ${e.target.textContent}`;
+        computerHand.textContent = `Computer chose: ${computerChoice}`;
+        winningHand.textContent = `Winner: ${winner}`;
+        
+        if (winner === 'Player') {
             playerScoreDisplay.textContent = ++playerScore;
+            computerScoreDisplay.textContent = computerScore;
+        } else if (winner === 'Computer') {
+            playerScoreDisplay.textContent = playerScore;
             computerScoreDisplay.textContent = ++computerScore;
+        } else {
+            playerScoreDisplay = playerScore;
+            computerScoreDisplay = computerScore;
+            tieScoreDisplay.textContent = ++tieScore;
         }
         
-        // playerScore++, computerScore++;
-
-
-
+        roundCount++;
 
     });
 });
