@@ -1,21 +1,3 @@
-console.log('Hello, World! Rock Edition');
-
-/* PSEUDOCODE FOR getComputerChoice FUNCTION
-Goal: Randomly one of the following string values: "rock", "paper", "scissors"
-Use Maths.random method. This will return a value >=0 x <1
-
-declare getComputerChoice function name
-variable randNumber = math floor (maths.random * 3)
-if randNumber = 0
-    variable hand = rock
-    else if randnumner = 1
-    variable hand = paper
-    else
-    variable hand = scissors
-return hand
-
-*/
-
 function getComputerChoice() {
     let randNumber = Math.floor(Math.random() * 3);
     let hand;
@@ -27,66 +9,8 @@ function getComputerChoice() {
         hand = 'Scissors ✂️';
     }
 
-    // console.log("Random: " + randNumber);
-    // console.log("Hand: " + hand);
-    // will need to return the value here
     return hand
 }
-
-// getComputerChoice();
-
-/* PSEUDOCODE for FUNCTION getHumanChoice
-Description: prompt user to choose a hand, allow only for one of three inputs. if diff input, prompt again
-
-*/
-
-function getHumanChoice() {
-    let hand = prompt('Rock, paper, scissors. What do you choose? Type r, p or s: ').toLowerCase();
-    if (hand === 'r' || hand === 'p' || hand === 's') {
-        // console.log("Hand is: " + hand);
-        if (hand === 'r') {
-            hand = 'rock';
-        } else if (hand === 'p') {
-            hand = 'paper';
-        } else {
-            hand = 'scissors';
-        }
-        // console.log("human choice: " + hand);
-        return hand
-    } else {
-        console.log("incorrect hand, running again");   
-        return getHumanChoice();
-    }
-
-}
-
-
-
-// getHumanChoice();
-
-/* PSEUDOCODE AND DESCRIPTION FOR DECLARING PLAYERS SCORE VARIABLES
-declare two variables, humanScore and computerScore, init with 0
-*/
-
-
-
-/* PSEUDOCODE FOR LOGIC FOR A FUNCTION TO PLAY A SINGLE ROUND 
-Description: take human and computer player choices as arguments, play a single round, increment the round winner's score and logs a winner announcement
-
-Create a function called playRound
-Define two parameters, humanChoice and computerChoice
-Make function's humanChoice parameter case-insensitive so that players can input rock, ROCK, RocK etc
-Write the code for playRound to console.log a string value representing the round winner, eg you lose, paper beats rock
-increment the humanscore or computerscore variable base don the round winner
-
-logic on round winning:
-p > r
-r > s
-s > p
-
-parity means tie round
-
-*/
 
 function playRound(humanChoice, computerChoice, humanScore, computerScore) {
     let winner;
@@ -142,23 +66,6 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore) {
 
 }
 
-
-
-
-
-/* NEXT STEPS: WRITE STEP 6, SEE INSTRUCTIONS
-also test above function logic with console log, make sure all working correctly
-
-1. testing output of each function. first, computerChoice. - OK, NOW WORKING CORRECTLY
-2. follow instructions to write step 6 function
-    * create a function called playGame
-    * move playRound and score variables so they're declared in playGame
-    * play 5 rounds by calling playRound 5 times - maybe I can have a counter in the function?
-
-*/
-
-
-
 function playGame(rounds, humanScore, computerScore, btnChoice) {
     // let humanScore = humanScore;
     // let computerScore = computerScore;
@@ -196,22 +103,7 @@ function playGame(rounds, humanScore, computerScore, btnChoice) {
     playGame(rounds, humanScore, computerScore);
 }
 
-// set up event listeners
-const buttons = document.querySelectorAll('button');
-let roundContent = document.querySelector('p.round-count span');
-let playerHand = document.querySelector('p.player-hand');
-let computerHand = document.querySelector('p.computer-hand');
-let playerScoreDisplay = document.querySelector('p.player-score span');
-let computerScoreDisplay = document.querySelector('p.computer-score span');
-let tieScoreDisplay = document.querySelector('p.tie-score span');
-let playerScore = 0;
-let computerScore = 0;
-let tieScore = 0;
-let roundCount = 1;
-
-buttons.forEach(button => {
-    // const playerHand = document.querySelector('p.player-hand');
-    button.addEventListener('click', e => {
+function btnPress(e) {
         // console.log(e.target.textContent);
         //play game, get returned values
         let {computerChoice, winner} = playRound(e.target.textContent, getComputerChoice());
@@ -252,8 +144,24 @@ buttons.forEach(button => {
         }
         
         roundCount++;
+}
 
-    });
+// set up event listeners
+const buttons = document.querySelectorAll('button');
+let roundContent = document.querySelector('p.round-count span');
+let playerHand = document.querySelector('p.player-hand');
+let computerHand = document.querySelector('p.computer-hand');
+let playerScoreDisplay = document.querySelector('p.player-score span');
+let computerScoreDisplay = document.querySelector('p.computer-score span');
+let tieScoreDisplay = document.querySelector('p.tie-score span');
+let playerScore = 0;
+let computerScore = 0;
+let tieScore = 0;
+let roundCount = 1;
+
+buttons.forEach(button => {
+    // const playerHand = document.querySelector('p.player-hand');
+    button.addEventListener('click', btnPress)
 });
 
 // playGame(5, 0, 0);

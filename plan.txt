@@ -42,3 +42,11 @@ Future:
 
 Bugs:
 * Fix logic on scores because first round has a score of 0. all about when you declare the variables and how you add them to the dom, straight forward enough.
+
+tie count x
+rounds x
+
+Next:
+Logic of max 5 wins. So, this is what you need to do.
+Begin a game with the first press. All rounds and counts are reset. Then first to five ends the game (confetti etc) and a subsequent button press starts it again. 
+So perhaps a function should control the round counts
