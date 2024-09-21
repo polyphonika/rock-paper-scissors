@@ -66,43 +66,6 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore) {
 
 }
 
-function playGame(rounds, humanScore, computerScore, btnChoice) {
-    // let humanScore = humanScore;
-    // let computerScore = computerScore;
-        
-    if (rounds > 0) {
-        // const winner = playRound(getHumanChoice(), getComputerChoice());
-        const winner = playRound(btnChoice, getComputerChoice());
-        rounds--;
-        if (winner === 'human') {
-            humanScore++;
-        } else if (winner === 'computer') {
-            computerScore++;
-        }
-    } else {
-        console.log('------------');
-        console.log('Game has finished, let\'s see who won');
-        console.log('------------');
-        console.log(`Human score:  ${humanScore}`);
-        console.log(`Computer score: ${computerScore}`);
-        if (humanScore > computerScore) {
-            console.log('Human is the winner!');
-            } else if (humanScore < computerScore) {
-            console.log('Computer is the winner');
-            } else {
-            console.log('Game is a tie, all players equal');
-            }
-    return
-    }    
-   
-
-    // console.log("end of round");
-    // console.log("hs: " + humanScore);
-    // console.log("cs: " + computerScore);
-
-    playGame(rounds, humanScore, computerScore);
-}
-
 function btnPress(e) {
     let maxWins = 5;
 
@@ -151,7 +114,8 @@ function btnPress(e) {
 }
 
 function endGame(winner) {    
-    // console.log('game over, winner declared');
+    confetti();
+
     buttons.forEach(button => {
         console.log(button);
         button.removeEventListener('click', btnPress);
@@ -161,7 +125,7 @@ function endGame(winner) {
     });
 
     let scoreHeader = document.querySelector('h2.score-header');
-    scoreHeader.textContent = `Game over, ${winner} wins is the winner!`;
+    scoreHeader.textContent = `Game over, ${winner} is the winner!`;
 
     let btnPlayAgain = document.createElement('button');
     btnPlayAgain.textContent = 'Play again?';
@@ -169,9 +133,7 @@ function endGame(winner) {
     header.insertAdjacentElement('afterend',btnPlayAgain);
     btnPlayAgain.addEventListener('click', () => {
         location.reload();
-    })
-    
-    
+    })    
 }
 
 function playGameV2() {
@@ -199,8 +161,6 @@ let roundCount = 1;
 playGameV2();
 
 
-
-// playGame(5, 0, 0);
 
 
 
